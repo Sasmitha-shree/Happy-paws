@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <title>Dog Food - Happy Paws</title>
+</head>
+<body>
+
+  <header>
+    🐶 Dog Food
+    <div class="cart">🛒 Cart: <span id="cartCount">0</span></div>
+  </header>
+
+  <div class="back-button">
+    <a href="products.html">← Back to Products</a>
+  </div>
+
+  <div class="container">
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://petsy.online/cdn/shop/products/Untitleddesign_23.jpg?v=1710500771">
+      <h4>Pedigree Chicken & Rice</h4>
+      <div class="details">
+        <p class="price">Price: ₹450</p>
+        <button class="add-btn" onclick="addToCart(event,'Pedigree Chicken & Rice',450)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdc3RBZ9AiIhxSogNXPluzL03DBka5PZdV5A&s">
+      <h4>Royal Canin Puppy Food</h4>
+      <div class="details">
+        <p class="price">Price: ₹1200</p>
+        <button class="add-btn" onclick="addToCart(event,'Royal Canin Puppy Food',1200)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://ofypets.com/cdn/shop/files/drools-chicken-and-egg-puppy-dog-food-ofypets-1_1024x1024.jpg?v=1739353527">
+      <h4>Drools Meat Chunks</h4>
+      <div class="details">
+        <p class="price">Price: ₹900</p>
+        <button class="add-btn" onclick="addToCart(event,'Drools Meat Chunks',900)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCmyTLjhmZCPs4O9e1NBgXQtdMu3Ik-np3dQ&s">
+      <h4>Dog Biscuits</h4>
+      <div class="details">
+        <p class="price">Price: ₹250</p>
+        <button class="add-btn" onclick="addToCart(event,'Dog Biscuits',250)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://5.imimg.com/data5/SELLER/Default/2024/10/456271299/EM/HB/HH/96926792/zoom-bark-large-rawhide-pressed-chew-bone.jpg">
+      <h4>Chew Bone</h4>
+      <div class="details">
+        <p class="price">Price: ₹150</p>
+        <button class="add-btn" onclick="addToCart(event,'Chew Bone',150)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://m.media-amazon.com/images/I/71g03h7tp9L._UF1000,1000_QL80_.jpg">
+      <h4>Feeding Bowl</h4>
+      <div class="details">
+        <p class="price">Price: ₹350</p>
+        <button class="add-btn" onclick="addToCart(event,'Feeding Bowl',350)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://t4.ftcdn.net/jpg/05/53/13/33/360_F_553133339_QFIHcO6Qlfdzc4ImZ3cP1jVyLgv8XLUt.jpg">
+      <h4>Dog Toys</h4>
+      <div class="details">
+        <p class="price">Price: ₹500</p>
+        <button class="add-btn" onclick="addToCart(event,'Dog Toys',500)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://m.media-amazon.com/images/I/71kBMciptkL._UF1000,1000_QL80_.jpg">
+      <h4>Snack Sticks</h4>
+      <div class="details">
+        <p class="price">Price: ₹220</p>
+        <button class="add-btn" onclick="addToCart(event,'Snack Sticks',220)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = localStorage.getItem("currentUser");
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    document.getElementById("cartCount").textContent = cartItems.length;
+
+    function toggleCard(card) {
+      document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    }
+
+    function addToCart(event, productName, price) {
+      event.stopPropagation();
+      if (!currentUser) {
+        alert("Please sign in to add items to your cart 🐾");
+        window.location.href = "login.html";
+        return;
+      }
+      cartItems.push({ name: productName, price: price });
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      document.getElementById("cartCount").textContent = cartItems.length;
+      alert(productName + " added to cart! 🛒");
+    }
+  </script>
+</body>
+</html>

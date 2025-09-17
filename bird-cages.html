@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <title>Bird Cages - Happy Paws</title>
+</head>
+<body>
+
+<header>🦜 Bird Cages <div class="cart">🛒 Cart: <span id="cartCount">0</span></div></header>
+<div class="back-button"><a href="products.html">← Back to Products</a></div>
+
+<div class="container">
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://images.thdstatic.com/productImages/fa1402f9-99db-436c-bbc2-97e88f09ee65/svn/fufu-gaga-bird-cages-carriers-y-thd-150225-01-c-76_600.jpg">
+    <h4>Large Bird Cage</h4>
+    <div class="details"><p class="price">Price: ₹3499</p>
+    <button class="add-btn" onclick="addToCart(event,'Large Bird Cage',3499)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcT9q2ICPDNhmK3SVVuVNQCjmcfIl2md4ohJC_7D5wnVDyM4rVazoKnC8OqYsp3RoTdZ0rhQbhtyrwEGtd0tC0sEytuns1FGGwtJ8Pzd2vQkFK8n1Xcu0mG2tu3gpzEDMSyhDsdleJc&usqp=CAc">
+    <h4>Wooden Perch Stand</h4>
+    <div class="details"><p class="price">Price: ₹899</p>
+    <button class="add-btn" onclick="addToCart(event,'Wooden Perch Stand',899)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQ9coXrqI6hmjr55VhE4Rc5B26kN462YNPRQpiX3kj28gI-BQQUQX91Zp6pDXopD2SsTCMtNu2A1QPgJPFr_DiIPHwP3ZUpPkpZRCAFpRYgwRkjPouunTs3L2Q_-Vt5afJV7y_W_p0Yf3A&usqp=CAc">
+    <h4>Hanging Cage Toy</h4>
+    <div class="details"><p class="price">Price: ₹499</p>
+    <button class="add-btn" onclick="addToCart(event,'Hanging Cage Toy',499)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://t4.ftcdn.net/jpg/05/53/13/33/360_F_553133339_QFIHcO6Qlfdzc4ImZ3cP1jVyLgv8XLUt.jpg">
+    <h4>Bird Feeder</h4>
+    <div class="details"><p class="price">Price: ₹299</p>
+    <button class="add-btn" onclick="addToCart(event,'Bird Feeder',299)">Add to Cart</button></div>
+  </div>
+</div>
+
+<script>
+  let currentUser=localStorage.getItem("currentUser");
+  let cartItems=JSON.parse(localStorage.getItem("cartItems"))||[];
+  document.getElementById("cartCount").textContent=cartItems.length;
+  function toggleCard(card){document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active'));card.classList.add('active');}
+  function addToCart(event,productName,price){
+    event.stopPropagation();
+    if(!currentUser){alert("Please sign in to add items to your cart 🐦");window.location.href="login.html";return;}
+    cartItems.push({name:productName,price:price});
+    localStorage.setItem("cartItems",JSON.stringify(cartItems));
+    document.getElementById("cartCount").textContent=cartItems.length;
+    alert(productName+" added to cart! 🛒");
+  }
+</script>
+</body>
+</html>

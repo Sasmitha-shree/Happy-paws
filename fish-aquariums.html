@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fish Aquariums - Happy Paws</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    🐠 Fish Aquariums
+    <div class="cart">🛒 Cart: <span id="cartCount">0</span></div>
+  </header>
+
+  <div class="back-button">
+    <a href="products.html">← Back to Products</a>
+  </div>
+
+  <div class="container">
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcREkJBlOdaPFI-4N9SFL3m9Jlbd2aDWo21tystEktjgCvRmOQTTW4pPUFLVRqprv5oSZNVbGiZcEqz1xP8anzOturpFWlTp6rq46oDbrdEXq_X-Pqh_gtRxG7I1PMhZaLnLHo_aDA&usqp=CAc" alt="Starter Kit">
+      <h4>Starter Kit</h4>
+      <div class="details">
+        <p class="price">Price: ₹2500</p>
+        <button class="add-btn" onclick="addToCart(event,'Starter Kit',2500)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcSJykLaK98Aj89mfVR1uhLdO__brI7RMbpcWrbUcuesTDNChZ3tdVvfSj4lUJZyLdUyFsSR_l7BMeBUAsHOGtVLrGx1c_PE9EfKAVlYw4Q&usqp=CAc" alt="Water Filter">
+      <h4>Water Filter</h4>
+      <div class="details">
+        <p class="price">Price: ₹800</p>
+        <button class="add-btn" onclick="addToCart(event,'Water Filter',800)">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="product-card" onclick="toggleCard(this)">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Amaterske_akvarium.jpg" alt="Aquarium Plants">
+      <h4>Aquarium Plants</h4>
+      <div class="details">
+        <p class="price">Price: ₹400</p>
+        <button class="add-btn" onclick="addToCart(event,'Aquarium Plants',400)">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let currentUser = localStorage.getItem("currentUser");
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    document.getElementById("cartCount").textContent = cartItems.length;
+
+    function toggleCard(card) {
+      document.querySelectorAll('.product-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    }
+
+    function addToCart(event, productName, price) {
+      event.stopPropagation();
+      if (!currentUser) {
+        alert("Please sign in to add items to your cart 🐾");
+        window.location.href = "login.html";
+        return;
+      }
+      cartItems.push({ name: productName, price: price });
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      document.getElementById("cartCount").textContent = cartItems.length;
+      alert(productName + " added to cart! 🛒");
+    }
+  </script>
+</body>
+</html>

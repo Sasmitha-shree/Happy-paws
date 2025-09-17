@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="style.css" />
+  <title>Cat Toys - Happy Paws</title>
+</head>
+<body>
+
+<header>🐱 Cat Toys <div class="cart">🛒 Cart: <span id="cartCount">0</span></div></header>
+<div class="back-button"><a href="products.html">← Back to Products</a></div>
+
+<div class="container">
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://cdn.spinmasterstudios.com/hexbug/media/catalog/product/cache/d64bdfbef0647162ce6500508a887a85/p/e/pettoys_irmouse_3qrt_l_v01_11242020.jpg">
+    <h4>Mouse Toy</h4>
+    <div class="details"><p class="price">Price: ₹200</p>
+    <button class="add-btn" onclick="addToCart(event,'Mouse Toy',200)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://www.purelypetsinsurance.co.uk/media/tb3nw0d0/a-cat-in-a-tunnel-hitting-a-pink-ball.jpg?format=webp">
+    <h4>Cat Tunnel</h4>
+    <div class="details"><p class="price">Price: ₹700</p>
+    <button class="add-btn" onclick="addToCart(event,'Cat Tunnel',700)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://www.thesprucepets.com/thmb/C1vZ2vxiZdRVDn6oy0ZvJTrtqF0=/3000x0/filters:no_upscale():strip_icc()/SPRPETS_3-Scratching-Posts-Collection-Furniture-Scratching-Deterrent-Tree-sisal-standalone-Tan-And-White-Striped-Kaya-Abrahamson-Photo-09-6fdcd2c626254e0d9a0fd9fda7e9ce43.jpg">
+    <h4>Scratching Post</h4>
+    <div class="details"><p class="price">Price: ₹1500</p>
+    <button class="add-btn" onclick="addToCart(event,'Scratching Post',1500)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://ae01.alicdn.com/kf/Sbdac5341dc3b4fbc9ff6b470364d9b7cv/Cat-Interactive-Ball-Smart-Cat-DogToys-Electronic-Interactive-Cat-Toy-Indoor-Automatic-Rolling-Magic-Ball-Cat.jpg">
+    <h4>Interactive Ball</h4>
+    <div class="details"><p class="price">Price: ₹400</p>
+    <button class="add-btn" onclick="addToCart(event,'Interactive Ball',400)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2baHLYy4vuF6JY0FijSKbvU9c95dH0Bh9YA&s">
+    <h4>Cat Food</h4>
+    <div class="details"><p class="price">Price: ₹550</p>
+    <button class="add-btn" onclick="addToCart(event,'Cat Food',550)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPMs0hoArKlPqv-Csx9uznAC88Q_aARafm5A&s">
+    <h4>Cat Litter Box</h4>
+    <div class="details"><p class="price">Price: ₹1200</p>
+    <button class="add-btn" onclick="addToCart(event,'Cat Litter Box',1200)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://i.ebayimg.com/images/g/L14AAOSwvIFkg1nw/s-l1200.jpg?odnHeight=117&odnWidth=117&odnBg=FFFFFF">
+    <h4>Cat Collar with Bell</h4>
+    <div class="details"><p class="price">Price: ₹250</p>
+    <button class="add-btn" onclick="addToCart(event,'Cat Collar with Bell',250)">Add to Cart</button></div>
+  </div>
+
+  <div class="product-card" onclick="toggleCard(this)">
+    <img src="https://www.shutterstock.com/image-photo/cute-beige-maine-coon-cat-600nw-2467067547.jpg">
+    <h4>Soft Cat Bed</h4>
+    <div class="details"><p class="price">Price: ₹1800</p>
+    <button class="add-btn" onclick="addToCart(event,'Soft Cat Bed',1800)">Add to Cart</button></div>
+  </div>
+</div>
+
+<script>
+  let currentUser=localStorage.getItem("currentUser");
+  let cartItems=JSON.parse(localStorage.getItem("cartItems"))||[];
+  document.getElementById("cartCount").textContent=cartItems.length;
+  function toggleCard(card){document.querySelectorAll('.product-card').forEach(c=>c.classList.remove('active'));card.classList.add('active');}
+  function addToCart(event,productName,price){event.stopPropagation();if(!currentUser){alert("Please sign in to add items to your cart 🐾");window.location.href="login.html";return;}cartItems.push({name:productName,price:price});localStorage.setItem("cartItems",JSON.stringify(cartItems));document.getElementById("cartCount").textContent=cartItems.length;alert(productName+" added to cart! 🛒");}
+</script>
+</body>
+</html>

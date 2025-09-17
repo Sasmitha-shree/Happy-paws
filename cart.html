@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Cart - Happy Paws</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    header {
+      background: #e07a5f;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #e07a5f;
+    }
+
+    .empty {
+      text-align: center;
+      font-size: 18px;
+      padding: 40px;
+      color: #777;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 16px;
+      background: #e07a5f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #cf644a;
+    }
+  </style>
+</head>
+<body>
+  <header>🛒 My Cart</header>
+
+  <div class="container" id="cartContainer">
+  </div>
+
+  <script>
+    let currentUser = localStorage.getItem("currentUser");
+    if(!currentUser){
+      alert("Please sign in to view your cart 🐾");
+      window.location.href = "login.html";
+    }
+
+    let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let container = document.getElementById("cartContainer");
+
+    if(cartItems.length === 0){
+      container.innerHTML = `<p class="empty">Your cart is empty 🐶</p>
+                             <a href="products.html" class="btn">← Continue Shopping</a>`;
+    } else {
+      let total = 0;
+      container.innerHTML = "";
+      cartItems.forEach(item=>{
+        total += item.price;
+        container.innerHTML += `
+          <div class="cart-item">
+            <span>${item.name}</span>
+            <span>₹${item.price}</span>
+          </div>
+        `;
+      });
+
+      container.innerHTML += `<p class="total">Total: ₹${total}</p>
+                              <button class="btn" onclick="checkout()">Proceed to Checkout</button>`;
+    }
+
+    function checkout(){
+      alert("Thank you for your order 🎉");
+      localStorage.removeItem("cartItems"); // clear cart after checkout
+      window.location.href="products.html";
+    }
+  </script>
+</body>
+</html>

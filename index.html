@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Paws 🐾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>🐾 Happy Paws 🐾</h1>
+  <p>Your one-stop shop for every pet’s needs!</p>
+</header>
+
+<nav>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="booking.html">Services</a>
+    <a href="locations.html">Locations</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div id="userArea">
+    <a href="login.html" id="loginLink">Login</a>
+    <a href="signup.html" id="signupLink">Sign Up</a>
+    <a href="#" id="logoutLink" style="display:none;">Logout</a>
+  </div>
+</nav>
+
+<section>
+  <h2>Welcome!</h2>
+  <p>We provide everything your pet deserves – food, toys, grooming, and care ❤️</p>
+  <div style="margin-top:20px;">
+    <button id="shopBtn" class="btn btn-primary">Shop All Products</button>
+    <button id="bookBtn" class="btn btn-outline">Book a Service</button>
+  </div>
+</section>
+
+<section>
+  <h2>Shop by Category</h2>
+  <div class="grid">
+    <div class="card" data-link="dog-food.html">🐶 <h3>Dogs</h3> <p>Food, Toys & Grooming</p></div>
+    <div class="card" data-link="cat-toys.html">🐱 <h3>Cats</h3> <p>Food, Beds & Toys</p></div>
+    <div class="card" data-link="bird-cages.html">🐦 <h3>Birds</h3> <p>Cages & Seeds</p></div>
+    <div class="card" data-link="fish-aquariums.html">🐟 <h3>Fish</h3> <p>Aquariums & Food</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Happy Paws | All Rights Reserved</p>
+</footer>
+
+<script>
+  // User login/logout display logic
+  const userArea = document.getElementById("userArea");
+  const loginLink = document.getElementById("loginLink");
+  const signupLink = document.getElementById("signupLink");
+  const logoutLink = document.getElementById("logoutLink");
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  if (user) {
+    loginLink.style.display = "none";
+    signupLink.style.display = "none";
+    const welcome = document.createElement("span");
+    welcome.innerHTML = `Welcome, <b>${user.name}</b> 👋 `;
+    welcome.style.marginRight = "15px";
+    userArea.insertBefore(welcome, logoutLink);
+    logoutLink.style.display = "inline";
+
+    logoutLink.addEventListener("click", () => {
+      localStorage.removeItem("user");
+      window.location.href = "index.html";
+    });
+  }
+
+  document.getElementById("shopBtn").addEventListener("click", () => {
+    window.location.href = "products.html";
+  });
+
+  document.getElementById("bookBtn").addEventListener("click", () => {
+    window.location.href = "booking.html";
+  });
+  document.querySelectorAll(".card").forEach(card => {
+    card.addEventListener("click", () => {
+      const link = card.getAttribute("data-link");
+      if (link) window.location.href = link;
+    });
+    card.style.cursor = "pointer"; 
+  });
+</script>
+
+</body>
+</html>
