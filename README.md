@@ -1,13 +1,17 @@
-🚀 Features:
+# Happy Paws – Pet Care & Store Website
 
-🐶 Pet categories (Dogs, Cats, Birds, etc.)
+## Project Overview
+**Happy Paws** is a responsive front-end website designed as a one-stop solution for pet lovers.  
+It provides pet products, grooming services, and easy navigation for different pet categories like dogs, cats, birds, and fish.
 
-🛍️ Product listing (Food, Toys, Accessories)
+The project uses **HTML, CSS, and JavaScript** with **localStorage-based login/logout functionality**.
 
-❤️ Add items to Favorites (localStorage)
+---
 
-🔍 Search functionality
-
-📄 Pet / product detail sections
-
-📱 Fully responsive UI
+## Features
+-  Pet product categories (Dogs, Cats, Birds, Fish)
+-  Shop products & book services
+-  Login / Sign Up / Logout system using localStorage
+-  Personalized welcome message after login
+-  Responsive design
+-  Clean and modern UI using Google Fonts
